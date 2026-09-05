@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
+from src import constants
 from src.api import Api, WorkoutSummary
 from src.exporters.base_exporter import BaseExporter, parse_points
 
@@ -64,9 +65,14 @@ class Scraper:
                 continue
 
             track_id = int(summary.trackid)
-            file_name = datetime.fromtimestamp(track_id).strftime(
-                "Workout--%Y-%m-%d--%H-%M-%S"
-            )
+            track_time = datetime.fromtimestamp(track_id).strftime("%Y-%m-%d_%H-%M-%S")
+            workout_type = constants.WORKOUT_TYPE_MAP.get(summary.type)
+            if workout_type is None:
+                raise Exception(
+                    f"Unknown workout type code {summary.type} for {track_time}"
+                )
+
+            file_name = f"{track_time}_{workout_type}"
 
             output_file_path = self.get_output_file_path(file_name)
             output_file_path.parent.mkdir(exist_ok=True)
