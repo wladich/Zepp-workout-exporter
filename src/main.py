@@ -42,7 +42,7 @@ def parse_date_to_timestamp(date_str, is_end=False):
         raise ValueError(f"Invalid date format '{date_str}': {e}") from e
 
 
-if __name__ == "__main__":
+def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     exporters = get_exporters()

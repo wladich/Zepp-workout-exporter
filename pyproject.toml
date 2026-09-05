@@ -1,5 +1,5 @@
 [project]
-name = "mi-fit-and-zepp-workout-exporter"
+name = "zepp-workout-exporter"
 version = "0.1.0"
 description = "A Python script, which allows users to export workout data from Mi Fit and Zepp applications"
 readme = "README.md"
@@ -15,3 +15,14 @@ dev = [
     "pyright>=1.1.397",
     "ruff>=0.11.2",
 ]
+
+[project.scripts]
+zepp-workouts-export = "src.main:main"
+
+[build-system]
+requires = ["uv_build>=0.9.21,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = "src"
