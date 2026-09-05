@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+    TOOL_PREFIX: "uv run "
+
+tasks:
+    default: task --list-all
+
+    typecheck: "{{ .TOOL_PREFIX}} pyright ."
+
+    lint:
+        - "{{ .TOOL_PREFIX}} ruff check ."
+        - "{{ .TOOL_PREFIX}} ruff format --check --diff ."
+
+    check:
+        cmds:
+            - task: typecheck
+            - task: lint
+
+    install: uv tool install --python 3.13 .
