@@ -74,13 +74,13 @@ def main() -> None:
         "--start-date",
         default=None,
         type=str,
-        help="Start date in YYYY-MM-DD format (optional)"
+        help="Start date in YYYY-MM-DD format (optional)",
     )
     ap.add_argument(
         "--end-date",
         default=None,
         type=str,
-        help="End date in YYYY-MM-DD format (optional)"
+        help="End date in YYYY-MM-DD format (optional)",
     )
 
     args = vars(ap.parse_args())
@@ -96,5 +96,7 @@ def main() -> None:
     start_ts = parse_date_to_timestamp(args["start_date"], is_end=False)
     end_ts = parse_date_to_timestamp(args["end_date"], is_end=True)
 
-    scraper = Scraper(api, exporter, args["output_directory"], args["file_format"], start_ts, end_ts)
+    scraper = Scraper(
+        api, exporter, args["output_directory"], args["file_format"], start_ts, end_ts
+    )
     scraper.run()

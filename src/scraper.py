@@ -11,7 +11,13 @@ LOGGER = logging.getLogger(__name__)
 
 class Scraper:
     def __init__(
-        self, api: Api, exporter: BaseExporter, output_dir: Path, file_format: str, start_ts: float, end_ts: float
+        self,
+        api: Api,
+        exporter: BaseExporter,
+        output_dir: Path,
+        file_format: str,
+        start_ts: float,
+        end_ts: float,
     ):
         self.api: Api = api
         self.exporter: BaseExporter = exporter
@@ -45,8 +51,7 @@ class Scraper:
     def run(self) -> None:
         summaries = self.fetch_workout_summaries()
         filtered_summaries = [
-            s for s in summaries
-            if self.start_ts <= int(s.trackid) <= self.end_ts
+            s for s in summaries if self.start_ts <= int(s.trackid) <= self.end_ts
         ]
 
         for summary in filtered_summaries:
