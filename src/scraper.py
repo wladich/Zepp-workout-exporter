@@ -56,14 +56,6 @@ class Scraper:
         ]
 
         for summary in filtered_summaries:
-            detail = self.api.get_workout_detail(summary)
-
-            if not (points := parse_points(summary, detail.data)):
-                LOGGER.warning(
-                    f"Skipping workout {summary.trackid} because it has no points"
-                )
-                continue
-
             track_id = int(summary.trackid)
             track_time = datetime.fromtimestamp(track_id).strftime("%Y-%m-%d_%H-%M-%S")
             workout_type = constants.WORKOUT_TYPE_MAP.get(summary.type)
@@ -73,8 +65,18 @@ class Scraper:
                 )
 
             file_name = f"{track_time}_{workout_type}"
-
             output_file_path = self.get_output_file_path(file_name)
+            if output_file_path.exists():
+                LOGGER.info(f"Already downloaded {output_file_path}")
+                continue
+
+            detail = self.api.get_workout_detail(summary)
+
+            if not (points := parse_points(summary, detail.data)):
+                LOGGER.warning(
+                    f"Skipping workout {summary.trackid} because it has no points"
+                )
+                continue
 
             self.exporter.export(output_file_path, summary, points)
             LOGGER.info(f"Downloaded {output_file_path}")
