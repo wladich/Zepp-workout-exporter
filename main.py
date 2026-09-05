@@ -7,13 +7,12 @@ from typing import List
 
 from src.api import Api
 from src.exporters.base_exporter import BaseExporter
-from src.exporters.geopandas_exporter import GeoPandasExporter
 from src.exporters.gpx_exporter import GpxExporter
 from src.scraper import Scraper
 
 
 def get_exporters() -> List[BaseExporter]:
-    exporters: List[BaseExporter] = [GpxExporter(), GeoPandasExporter()]
+    exporters: List[BaseExporter] = [GpxExporter()]
     return exporters
 
 

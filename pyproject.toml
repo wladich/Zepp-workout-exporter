@@ -5,7 +5,6 @@ description = "A Python script, which allows users to export workout data from M
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "geopandas>=1.0.1",
     "gpxpy>=1.6.2",
     "pydantic>=2.10.6",
     "requests>=2.32.3",
