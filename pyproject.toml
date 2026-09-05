@@ -3,7 +3,7 @@ name = "mi-fit-and-zepp-workout-exporter"
 version = "0.1.0"
 description = "A Python script, which allows users to export workout data from Mi Fit and Zepp applications"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.14"
 dependencies = [
     "gpxpy>=1.6.2",
     "pydantic>=2.10.6",
