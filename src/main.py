@@ -66,7 +66,7 @@ def main() -> None:
     ap.add_argument(
         "-o",
         "--output-directory",
-        default="./workouts",
+        required=True,
         type=Path,
         help="A directory where the downloaded workouts will be stored",
     )
