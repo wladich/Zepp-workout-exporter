@@ -6,5 +6,6 @@ APP_PLATFORM: Final[str] = "web"
 WORKOUT_TYPE_MAP = {
     1: "running",
     6: "walking",
+    9: "cycling",
     22: "hiking",
 }
