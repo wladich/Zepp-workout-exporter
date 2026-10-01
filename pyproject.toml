@@ -1,6 +1,6 @@
 [project]
 name = "zepp-workout-exporter"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python script, which allows users to export workout data from Mi Fit and Zepp applications"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"

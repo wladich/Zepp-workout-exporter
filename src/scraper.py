@@ -64,7 +64,7 @@ class Scraper:
                     f"Unknown workout type code {summary.type} for {track_time}"
                 )
 
-            file_name = f"{track_time}_{workout_type}"
+            file_name = f"{track_time}_{workout_type.replace(' ', '_')}"
             output_file_path = self.get_output_file_path(file_name)
             if output_file_path.exists():
                 LOGGER.info(f"Already downloaded {output_file_path}")
